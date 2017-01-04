@@ -21,7 +21,9 @@ def obtain_parse_wiki_snp500():
     Returns a list of tuples for to add to MySQL.
     """
     # Stores the current time, for the created_at record
-    now = datetime.datetime.utcnow()
+    
+    now = datetime.datetime.now()
+    print (now)
 
     # Use requests and BeautifulSoup to download the 
     # list of S&P500 companies and obtain the symbol table
@@ -56,10 +58,10 @@ def insert_snp500_symbols(symbols):
     Insert the S&P500 symbols into the MySQL database.
     """
     # Connect to the MySQL instance
-    db_host = 'localhost'
-    db_user = 'sec_user'
-    db_pass = 'password'
-    db_name = 'securities_master'
+    db_host = '127.0.0.1'
+    db_user = 'root'
+    db_pass = 'ifgtbilu13'
+    db_name = 'yahoodata'
     con = mdb.connect(
         host=db_host, user=db_user, passwd=db_pass, db=db_name
     )
