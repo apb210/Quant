@@ -60,7 +60,7 @@ def insert_snp500_symbols(symbols):
     # Connect to the MySQL instance
     db_host = '127.0.0.1'
     db_user = 'root'
-    db_pass = 'ifgtbilu13'
+    db_pass = ''
     db_name = 'yahoodata'
     con = mdb.connect(
         host=db_host, user=db_user, passwd=db_pass, db=db_name
