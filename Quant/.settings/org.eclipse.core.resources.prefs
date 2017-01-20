@@ -1,2 +1,4 @@
 eclipse.preferences.version=1
 encoding/insert_symbols.py=utf-8
+encoding/price_retrieval.py=utf-8
+encoding/retrieving_data.py=utf-8
