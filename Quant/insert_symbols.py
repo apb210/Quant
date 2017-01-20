@@ -10,7 +10,7 @@ from math import ceil
 
 import bs4
 import MySQLdb as mdb
-import requests 
+import requests
 
 
 def obtain_parse_wiki_snp500():
@@ -21,9 +21,7 @@ def obtain_parse_wiki_snp500():
     Returns a list of tuples for to add to MySQL.
     """
     # Stores the current time, for the created_at record
-    
-    now = datetime.datetime.now()
-    print (now)
+    now = datetime.datetime.utcnow()
 
     # Use requests and BeautifulSoup to download the 
     # list of S&P500 companies and obtain the symbol table
@@ -60,11 +58,12 @@ def insert_snp500_symbols(symbols):
     # Connect to the MySQL instance
     db_host = '127.0.0.1'
     db_user = 'root'
-    db_pass = ''
+    db_pass = 'ifgtbilu13'
     db_name = 'yahoodata'
     con = mdb.connect(
         host=db_host, user=db_user, passwd=db_pass, db=db_name
     )
+
 
     # Create the insert strings
     column_str = """ticker, instrument, name, sector, 
@@ -73,9 +72,10 @@ def insert_snp500_symbols(symbols):
     insert_str = ("%s, " * 7)[:-2]
     final_str = "INSERT INTO symbol (%s) VALUES (%s)" % \
         (column_str, insert_str)
-
+    print ("Success")
     # Using the MySQL connection, carry out 
     # an INSERT INTO for every symbol
+    print (final_str)
     with con: 
         cur = con.cursor()
         cur.executemany(final_str, symbols)
@@ -83,5 +83,6 @@ def insert_snp500_symbols(symbols):
 
 if __name__ == "__main__":
     symbols = obtain_parse_wiki_snp500()
+    print(symbols)
     insert_snp500_symbols(symbols)
     print("%s symbols were successfully added." % len(symbols))
